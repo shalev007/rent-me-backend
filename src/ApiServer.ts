@@ -1,4 +1,4 @@
-import express from 'express';
+import express, { Router } from 'express';
 import { createServer, Server } from 'http';
 import { Port } from './types/ApiServer';
 
@@ -20,6 +20,11 @@ class ApiServer {
 
     public setPort(port: Port): ApiServer {
         this.port = port;
+        return this;
+    }
+
+    public addRouter(router: Router): ApiServer {
+        this.getApp().use(router);
         return this;
     }
 
